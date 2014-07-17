@@ -1,0 +1,17 @@
+%h1 Użytkownicy bloga (autorzy)
+- if notice
+  %font{color: "green"}= notice
+%br/
+= link_to "Wroc na glowna", root_url
+%br/
+= link_to "Dodaj", new_author_path
+%ul
+  - @authors.each do |a|
+    %li
+      %b= a.id
+      = a.name
+      = a.surname
+      = a.sex
+      = a.birthdate
+      = link_to "Edytuj", edit_author_path(a.id)
+      = link_to "Usuń", author_path(a.id), method: :delete

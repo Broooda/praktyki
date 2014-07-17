@@ -1,0 +1,5 @@
+%h1 Wszyscy uzytkownicy:
+-@users.each do |e|
+	%ul
+		%li= link_to e.email, user_path(e.id)
+

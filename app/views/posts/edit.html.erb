@@ -1,0 +1,9 @@
+<h1> Dodaj post: </h1>
+<%= form_for(@post) do |p| %>
+<%= p.label :content %>
+<%= p.text_field :content %>
+<br>
+<%= p.hidden_field :user_id, value: current_user.id%>
+<br>
+<%= p.submit "Edytuj"%>
+<% end %>

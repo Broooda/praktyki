@@ -1,0 +1,13 @@
+<h1> Komentarz <%=@comment.id %></h1>
+
+<ul>
+<li>
+<%=@comment.user.email%>
+
+<%=@comment.created_at%>
+<br>
+<b><%=@comment.content%></b>
+</li>
+<%= link_to "Usun", comment_path(params[:id]), method: :delete %>
+
+	</ul>

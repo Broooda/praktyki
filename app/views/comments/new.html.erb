@@ -1,0 +1,14 @@
+<h1> Dodaj komentarz: </h1>
+<%= form_for(@comment) do |p| %>
+
+<% @comment.errors.full_messages.each do |err| %>
+<li> <font color="red"><%= err %></font> </li>
+<%end%>
+
+<%= p.label :content %>
+<%= p.text_area :content %>
+<%= p.hidden_field :user_id, value: current_user.id%>
+<br>
+<%= p.hidden_field :post_id, value: params[:id]%>
+<%= p.submit "Dodaj"%>
+<% end %>

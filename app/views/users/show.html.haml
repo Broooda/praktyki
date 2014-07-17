@@ -1,0 +1,15 @@
+%h1 Panel uzytkownika
+%h3= current_user.email
+%br
+=link_to "Wroc", root_url
+%br
+%h3 Twoje posty
+%ul
+  -current_user.posts.each do |p|
+    %li= link_to p.content, post_path(p.id)
+    %hr
+%h3 Twoje komentarze
+%ul
+  -current_user.comments.each do |p|
+    %li= link_to p.content , post_path(p.id)
+    %hr

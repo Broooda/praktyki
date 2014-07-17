@@ -1,0 +1,19 @@
+<h1> Dodaj autora: </h1>
+<%= form_for(@author) do |p| %>
+<% @author.errors.full_messages.each do |err| %>
+<li> <font color="red"><%= err %></font> </li>
+<%end%>
+<%= p.label :name %>
+<%= p.text_field :name %>
+<br>
+<%= p.label :surname %>
+<%= p.text_field :surname %>
+<br>
+<%= p.label :sex %>
+<%= p.text_field :sex %>
+<br>
+<%= p.label :birthdate %>
+<%= p.text_field :birthdate %>
+<br>
+<%= p.submit "Dodaj"%>
+<% end %>

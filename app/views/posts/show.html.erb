@@ -1,0 +1,32 @@
+<h1> Dane postu <%= @post.id %></h1>
+<br>
+<% if notice%>
+<font color="green"><%=notice%></font>
+<% end %>
+<b>
+<%= @post.time %>
+</b>
+<br>
+<b>
+<%= @post.content %>
+</b>
+<br>
+Autor postu:<b> <%= @post.user.email %></b>
+<br>
+<%= link_to "Wroc",posts_path %>
+<%= link_to "Dodaj komentarz", new_comment_path(id: @post.id) %>
+<br>
+<br>
+<br>
+<b> Komentarze: </b>
+<hr>
+<% @post.comments.each do |c| %>
+Komentarz od: <%= c.user.email %>
+<br>
+<b>
+<%= c.content %>
+<br>
+</b>
+<%= link_to "Wyswietl", comment_path(c.id)%>
+<hr>
+<%end%>

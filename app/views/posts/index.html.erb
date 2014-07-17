@@ -1,0 +1,23 @@
+<h1> Posty: </h1> <% if notice%>
+<font color="green"><%=notice%></font>
+<% end %><%= link_to "Wroc na glowna", root_url %>
+
+<%= link_to "Dodaj Post",new_post_path%>
+	<ul>
+		<% @posts.each do |p| %>
+			<li>
+				<%= p.id %>
+				<font size=2><%= p.user.email %></font>
+				<br> <b><%= p.content %></b>
+				<br>
+				
+				<%= link_to "Wyswietl",post_path(p.id)%>
+				<%= link_to "Edytuj",edit_post_path(p.id)%>
+				<%= link_to "Dodaj komentarz",new_comment_path(id: p.id)%>
+				<%= link_to "Usun",post_path(p.id), method: :delete %>
+			
+			</li>
+			<hr>
+		<%end%>
+
+	</ul> 

@@ -1,0 +1,11 @@
+<h1> Dodaj post: </h1>
+<%= form_for(@post) do |p| %>
+<% @post.errors.full_messages.each do |err| %>
+<li> <font color="red"><%= err %></font> </li>
+<%end%>
+<%= p.hidden_field :user_id, value: current_user.id%>
+<%= p.label :content %>
+<%= p.text_area :content %>
+<br>
+<%= p.submit "Dodaj"%>
+<% end %>

@@ -5,8 +5,9 @@
 	<%= link_to "Wroc na glowna", root_url,class: "btn btn-primary"  %>
 
 <% if notice%>
-<font color="green"><%=notice%></font>
+<div class="alert"><%=notice%></div>
 <% end %>
+<%if current_user %>
 <p> Dodaj post: </p>
 <%= form_for(@post, remote: true) do |p| %>
 <% @post.errors.full_messages.each do |err| %>
@@ -18,8 +19,12 @@
 <br>
 <%= p.submit "Dodaj", class: "btn btn-primary btn-xs"%>
 <% end %>
-
-
+<%else%>
+<div class="alert">Aby dodawać posty, musisz być zalogowany! 
+	<%= link_to "Zaloguj", new_user_session_path %>
+<%= link_to "Rejestracja",new_user_registration_path %>
+</div>  
+<%end%>
 <div class="container">
 		<% @posts.each do |p| %>
 		<div class="modal-content">

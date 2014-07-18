@@ -1,5 +1,5 @@
 <h1> Komentarz <%=@comment.id %></h1>
-
+<%= link_to "Wroc", post_path(params[:id].post_id.to_s), class: "btn btn-primary btn-xs" %>
 <ul>
 <li>
 <%=@comment.user.email%>
@@ -8,6 +8,6 @@
 <br>
 <b><%=@comment.content%></b>
 </li>
-<%= link_to "Usun", comment_path(params[:id]), method: :delete %>
+<%= link_to "Usun", comment_path(params[:id]), method: :delete, class: "btn btn-primary btn-xs" %>
 
 	</ul>

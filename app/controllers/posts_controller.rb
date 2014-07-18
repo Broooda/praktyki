@@ -5,6 +5,7 @@ class PostsController < ApplicationController
 
 	def index
 		@posts=Post.all
+		@post=Post.new
 	end
 	def show
 		@post=Post.find(params[:id])
@@ -26,7 +27,8 @@ class PostsController < ApplicationController
 	def create
 		@post=Post.new(post_params)
 		 if @post.save
-			redirect_to posts_path, notice:"Post stworzony"
+		 	render json: @post
+			#redirect_to posts_path, notice:"Post stworzony"
 		else
 			render "new"
 		end 

@@ -1,23 +1,51 @@
-<h1> Posty: </h1> <% if notice%>
+
+
+<h1> Posty: </h1> 
+
+	<%= link_to "Wroc na glowna", root_url,class: "btn btn-primary" %>
+
+<% if notice%>
 <font color="green"><%=notice%></font>
-<% end %><%= link_to "Wroc na glowna", root_url %>
+<% end %>
+<p> Dodaj post: </p>
+<%= form_for(@post, remote: true) do |p| %>
+<% @post.errors.full_messages.each do |err| %>
+<li> <font color="red"><%= err %></font> </li>
+<%end%>
+<%= p.hidden_field :user_id, value: current_user.id%>
+<%= p.label :content %>
+<%= p.text_area :content %>
+<br>
+<%= p.submit "Dodaj", class: "btn btn-primary btn-xs"%>
+<% end %>
 
-<%= link_to "Dodaj Post",new_post_path%>
-	<ul>
+
+<div class="container">
 		<% @posts.each do |p| %>
-			<li>
-				<%= p.id %>
-				<font size=2><%= p.user.email %></font>
-				<br> <b><%= p.content %></b>
-				<br>
-				
-				<%= link_to "Wyswietl",post_path(p.id)%>
-				<%= link_to "Edytuj",edit_post_path(p.id)%>
-				<%= link_to "Dodaj komentarz",new_comment_path(id: p.id)%>
-				<%= link_to "Usun",post_path(p.id), method: :delete %>
+		<div class="modal-content">
 			
-			</li>
-			<hr>
+			
+				Autor: 
+				<font size=2><%= p.user.email %></font>
+			    
+				<br>Post:  <b><%= p.content %></b>
+				<br>
+			
+				<%= link_to "Wyswietl",post_path(p.id), class: "btn btn-primary btn-xs"%>
+				<%= link_to "Edytuj",edit_post_path(p.id), class: "btn btn-primary btn-xs"%>
+				<%= link_to "Usun",post_path(p.id), method: :delete, class: "btn btn-primary btn-xs"  %>
+		
+			
+			</div>
+			<br>
 		<%end%>
+</div>
 
-	</ul> 
+	
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#new_post').bind('ajax:success', function(xhr, data){
+			alert("Post dodany!");
+		})
+	})
+</script>

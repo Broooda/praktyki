@@ -1,18 +1,21 @@
 <% if notice%>
 <font color="green"><%=notice%><br></font>
 <% end %>
+<center>
 <% if current_user %>
  Jestes zalogowany jako:
 <%= current_user.email %>
-<%= link_to "Profil", user_path(current_user.id)  %>
-<br>
+<%= link_to "Profil", user_path(current_user.id) %>
 <%= link_to "Wyloguj", destroy_user_session_path,  method: :delete  %>
 <%else%>
 <font size=3>	<%= link_to "Rejestracja",new_user_registration_path %>
  <%= link_to "Zaloguj", new_user_session_path %></font>
 <%end%>
 <br>
-<h3><%= link_to "Wyswietl posty",posts_path %></h3>
-<h3> 	<%= link_to "Wyswietl uzytkownikow",users_path %></h3>
 
+</center>
+<div class="container">
+<h3><%= link_to "Wyswietl posty",posts_path, class: "btn btn-primary btn-lg " %></h3>
+<h3> 	<%= link_to "Wyswietl uzytkownikow",users_path, class: "btn btn-primary btn-lg " %></h3>
+</div>
 

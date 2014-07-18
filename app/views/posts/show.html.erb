@@ -3,30 +3,33 @@
 <% if notice%>
 <font color="green"><%=notice%></font>
 <% end %>
-<b>
-<%= @post.time %>
+
+Data:<b> <%= @post.time %>
 </b>
 <br>
-<b>
-<%= @post.content %>
+
+Treść:<b> <%= @post.content %>
 </b>
 <br>
 Autor postu:<b> <%= @post.user.email %></b>
 <br>
-<%= link_to "Wroc",posts_path %>
-<%= link_to "Dodaj komentarz", new_comment_path(id: @post.id) %>
+<%= link_to "Wroc",posts_path, class: "btn btn-primary" %>
+<%= link_to "Dodaj komentarz", new_comment_path(id: @post.id),class: "btn btn-primary btn-xs" %>
 <br>
 <br>
 <br>
 <b> Komentarze: </b>
-<hr>
+<div class="container">
 <% @post.comments.each do |c| %>
+<div class="modal-content">
 Komentarz od: <%= c.user.email %>
 <br>
 <b>
 <%= c.content %>
 <br>
 </b>
-<%= link_to "Wyswietl", comment_path(c.id)%>
-<hr>
+<%= link_to "Wyswietl",comment_path(c.id), class: "btn btn-primary btn-xs"%>
+<%= link_to "Usun",comment_path(c.id), method: :delete, class: "btn btn-primary btn-xs"  %>
+</div>
 <%end%>
+</div>

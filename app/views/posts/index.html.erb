@@ -35,11 +35,13 @@
 			    
 				<br>Post:  <b><%= p.content %></b>
 				<br>
-			
+				<% if current_user %>
 				<%= link_to "Wyswietl",post_path(p.id), class: "btn btn-primary btn-xs"%>
 				<%= link_to "Edytuj",edit_post_path(p.id), class: "btn btn-primary btn-xs"%>
 				<%= link_to "Usun",post_path(p.id), method: :delete, class: "btn btn-primary btn-xs"  %>
-		
+				<%else%>
+				<div class="alert">Zeby wyswietlic komentarze, musisz byc zalogowany</div>
+				<% end %>
 			
 			</div>
 			<br>
